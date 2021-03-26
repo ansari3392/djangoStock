@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1> Add Stock Here </h1>
+
+<form class="d-flex" action="{% url 'add_stock'  %}" method="POST">
+    {% csrf_token %}
+    <input class="form-control me-2 " type="search" placeholder="Add To Portfolio" aria-label="Search" name="symbol">
+    <button class="btn btn-outline-secondary  " type="submit"> Add Stock </button>
+  </form>
+  <br/>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col"><center>Symbol</center></th>
+        <th scope="col"><center>Last Refreshed</center></th>
+        <th scope="col"><center> Interval</center></th>
+        <th scope="col"><center>Output Size</center></th>
+        <th scope="col"><center>Time Zone</center></th>
+        <!-- <th scope="col"><center>delete</center></th> -->
+      </tr>
+    </thead>
+    <tbody>
+    {% if output %}
+      {% for list_item in output %}
+        <tr>
+          <th scope="row"><center>{{list_item.Symbol}}</center></th>
+          <td><center>{{list_item.LastRefreshed}}</center></td>
+          <td><center>{{list_item.Interval}}</center></td>
+          <td><center>{{list_item.OutputSize}}</center></td>
+          <td><center>{{list_item.TimeZone}}</center></td>
+          <!-- <td><center><a href="/"> Delete Stock </a></center></td> -->
+        </tr>
+      {% endfor %}
+    {% endif %}
+    </tbody>
+  </table>
+  <br/>
+
+<br/>
+   
+
+
+{% endblock  %} 

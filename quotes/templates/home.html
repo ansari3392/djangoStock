@@ -1,0 +1,36 @@
+{% extends 'base.html'%}
+
+{% block content  %}
+{% if ticker_symbol %}
+    <h1>{{ticker_symbol}}</h1>
+{% endif %}
+
+</br>
+
+<!-- {% if api %}
+    {% if api == "Error ..." %}
+        there was a problem, please try again
+    {% else %}
+        {% for key, value in api.items %}
+            {% for key1, value1 in value.items %}
+                {{ key1 }}: {{ value1 }} <br/><br/>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+{% endif %} -->
+
+
+{% if metaData %}
+    {% if metaData == "error ... "%}
+        oops, you have called this item more than 5 times in 5 minutes.  please wait ... 
+    {% else %}
+        Symbol :{{metaData.Symbol}}<br/>
+        LastRefreshed :{{metaData.LastRefreshed}}<br/>
+        Interval : {{metaData.Interval}}<br/>
+        OutputSize : {{metaData.OutputSize}}<br/>
+        TimeZone : {{metaData.TimeZone}}
+    {% endif %}
+{% endif %}
+
+
+{% endblock %}
